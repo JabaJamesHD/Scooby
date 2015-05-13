@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.scooby.command.CommandHandler;
 import net.minecraft.scooby.event.EventHandler;
 import net.minecraft.scooby.handlers.Handler;
 import net.minecraft.scooby.mode.ModeHandler;
+import net.minecraft.scooby.settings.ModSettings;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -34,12 +36,13 @@ public class Scooby {
 	 * Feel free to change the name, I heard that Forge sends mod names to the server, so I went with
 	 * a random mod name. I might use the http://modlist.mcf.li/ API to grab a random mod name upon startup.
 	 */
-	public static final String MOD_NAME = "OpenComputers";
+	public static final String MOD_NAME = "OpenComputers", NAME = "Scooby";
 	public final Minecraft mc = Minecraft.getMinecraft();
 	private final List<Handler> handlers = new ArrayList<Handler>();
 	
 	public ModeHandler modeHandler;
 	public EventHandler eventHandler;
+	public CommandHandler commandHandler;
 
 	public void addHandler(Handler handler) {
 		getHandlers().add(handler);
@@ -54,7 +57,17 @@ public class Scooby {
 	public void init(FMLInitializationEvent event) {
 		addHandler(modeHandler = new ModeHandler());
 		addHandler(eventHandler = new EventHandler());
+		addHandler(commandHandler = new CommandHandler());
 		FMLCommonHandler.instance().bus().register(eventHandler);
 		MinecraftForge.EVENT_BUS.register(eventHandler);
+		final ModSettings settings = new ModSettings(this);
+		settings.loadKeyBinds();
+		Runtime.getRuntime().addShutdownHook(new Thread(MOD_NAME + " Shutdown Thread")
+		{
+			@Override
+			public void run() {
+				settings.saveKeyBinds();
+			}
+		});
 	}
 }

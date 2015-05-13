@@ -76,7 +76,7 @@ public class TriggerBot extends Mode {
 	private Random random = new Random();
 
 	public TriggerBot(Scooby scooby) {
-		super(scooby, Keyboard.KEY_R);
+		super(scooby, "trigger_bot", Keyboard.KEY_R);
 		this.timer = new Timer();
 	}
 

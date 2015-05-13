@@ -12,7 +12,7 @@ import org.lwjgl.input.Keyboard;
 public class Criticals extends Mode {
 
 	public Criticals(Scooby scooby) {
-		super(scooby, Keyboard.KEY_C);
+		super(scooby, "criticals", Keyboard.KEY_C);
 		// TODO Auto-generated constructor stub
 	}
 

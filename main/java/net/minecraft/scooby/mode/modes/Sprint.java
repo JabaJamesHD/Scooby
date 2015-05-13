@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 public class Sprint extends Mode {
 
 	public Sprint(Scooby scooby) {
-		super(scooby, scooby.mc.gameSettings.keyBindSprint.getKeyCode());
+		super(scooby, "sprint", scooby.mc.gameSettings.keyBindSprint.getKeyCode());
 	}
 
 	@Override

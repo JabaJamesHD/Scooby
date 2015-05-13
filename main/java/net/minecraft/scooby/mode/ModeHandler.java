@@ -18,13 +18,13 @@ import net.minecraft.scooby.mode.modes.Velocity;
 public class ModeHandler implements Handler {
 
 	/* The list of mods.  This will allow us to loop through the mods to call stuff rather than individually. */
-	private final List<Mode> mods = new CopyOnWriteArrayList<Mode>();
+	private final List<Mode> modes = new CopyOnWriteArrayList<Mode>();
 
 	/**
 	 * @return	The mod list, rather than having it be public.  Basic getter.
 	 */
 	public List<Mode> getModes() {
-		return this.mods;
+		return this.modes;
 	}
 
 	/**
@@ -44,6 +44,6 @@ public class ModeHandler implements Handler {
 	 * @param mode	The specified Mod to 'register'.
 	 */
 	private void registerMode(Mode mode) {
-		this.mods.add(mode);
+		this.modes.add(mode);
 	}
 }

@@ -21,7 +21,7 @@ public class Velocity extends Mode {
 	private float prevHealth = -999.0F; // Because Minecraft Forge is dumb and doesn't have an Event for velocity being added to an Entity...
 	private Random rand = new Random();
 	public Velocity(Scooby scooby) {
-		super(scooby, Keyboard.KEY_V);
+		super(scooby, "velocity", Keyboard.KEY_V);
 		// TODO Auto-generated constructor stub
 	}
 

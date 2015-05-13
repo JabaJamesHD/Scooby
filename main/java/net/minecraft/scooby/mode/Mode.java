@@ -17,10 +17,16 @@ public abstract class Mode {
 
 	/* Whether or not the mod is currently enabled */
 	private boolean enabled = false;
+	private String configName;
 
-	public Mode(Scooby scooby, int toggleKey) {
+	public Mode(Scooby scooby, String configName, int toggleKey) {
 		this.scooby = scooby;
+		this.configName = configName;
 		this.toggleKey = toggleKey;
+	}
+
+	public String getConfigName() {
+		return configName;
 	}
 
 	/**
@@ -40,7 +46,6 @@ public abstract class Mode {
 	}
 
 	public abstract void onEvent(Event event);
-
 	/**
 	 * This method toggles the mod based on the specified state.
 	 *
@@ -48,5 +53,8 @@ public abstract class Mode {
 	 */
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	public void setToggleKey(int toggleKey) {
+		this.toggleKey = toggleKey;
 	}
 }

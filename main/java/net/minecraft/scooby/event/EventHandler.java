@@ -1,8 +1,10 @@
 package net.minecraft.scooby.event;
 
+import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.scooby.Scooby;
 import net.minecraft.scooby.handlers.Handler;
 import net.minecraft.scooby.mode.Mode;
+import net.minecraftforge.event.CommandEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -26,6 +28,14 @@ public class EventHandler implements Handler {
 	}
 
 	@SubscribeEvent
+	public void onCommand(CommandEvent event) {
+		ServerData currentServerData = scooby.mc.getCurrentServerData();
+		if (scooby.commandHandler.getCommands().contains(event.command) && event.sender == scooby.mc.thePlayer && currentServerData != null && !currentServerData.serverIP.split(":")[0].equals("127.0.0.1")) {
+			event.setCanceled(true);
+		}
+	}
+
+	@SubscribeEvent
 	public void onEvent(Event event) {
 		for (Mode mode : scooby.modeHandler.getModes()) {
 			if (mode.isEnabled()) {
@@ -33,7 +43,6 @@ public class EventHandler implements Handler {
 			}
 		}
 	}
-
 	/**
 	 * @see net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent
 	 */

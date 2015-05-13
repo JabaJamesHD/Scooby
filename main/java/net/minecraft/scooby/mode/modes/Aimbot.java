@@ -33,7 +33,7 @@ public class Aimbot extends Mode {
 	private int slowRotationCount;
 	private float slowRotationIncrement;
 	public Aimbot(Scooby scooby) {
-		super(scooby, Keyboard.KEY_I);
+		super(scooby, "aimbot", Keyboard.KEY_I);
 		// TODO Auto-generated constructor stub
 	}
 
