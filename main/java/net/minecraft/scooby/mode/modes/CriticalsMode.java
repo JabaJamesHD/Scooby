@@ -9,10 +9,10 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 
 import org.lwjgl.input.Keyboard;
 
-public class Criticals extends Mode {
+public class CriticalsMode extends Mode {
 
-	public Criticals(Scooby scooby) {
-		super(scooby, "criticals", Keyboard.KEY_C);
+	public CriticalsMode(Scooby scooby) {
+		super(scooby, "Criticals", Keyboard.KEY_C);
 		// TODO Auto-generated constructor stub
 	}
 

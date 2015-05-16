@@ -5,6 +5,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import net.minecraft.scooby.Scooby;
 import net.minecraft.scooby.command.commands.BindCommand;
+import net.minecraft.scooby.command.commands.HelpCommand;
+import net.minecraft.scooby.command.commands.VelocityCommand;
 import net.minecraft.scooby.handlers.Handler;
 import net.minecraftforge.client.ClientCommandHandler;
 
@@ -24,6 +26,8 @@ public class CommandHandler implements Handler {
 	@Override
 	public void init(Scooby scooby) {
 		registerCommand(new BindCommand(scooby));
+		registerCommand(new HelpCommand(scooby));
+		registerCommand(new VelocityCommand(scooby));
 	}
 
 	private void registerCommand(Command command) {

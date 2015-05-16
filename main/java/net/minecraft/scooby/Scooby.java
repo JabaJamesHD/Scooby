@@ -9,6 +9,8 @@ import net.minecraft.scooby.event.EventHandler;
 import net.minecraft.scooby.handlers.Handler;
 import net.minecraft.scooby.mode.ModeHandler;
 import net.minecraft.scooby.settings.ModSettings;
+import net.minecraft.scooby.util.CommandUtils;
+import net.minecraft.scooby.util.ModeUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -43,6 +45,8 @@ public class Scooby {
 	public ModeHandler modeHandler;
 	public EventHandler eventHandler;
 	public CommandHandler commandHandler;
+	public ModeUtils modeUtils;
+	public CommandUtils commandUtils;
 
 	public void addHandler(Handler handler) {
 		getHandlers().add(handler);
@@ -60,13 +64,17 @@ public class Scooby {
 		addHandler(commandHandler = new CommandHandler());
 		FMLCommonHandler.instance().bus().register(eventHandler);
 		MinecraftForge.EVENT_BUS.register(eventHandler);
+		modeUtils = new ModeUtils(this);
+		commandUtils = new CommandUtils(this);
 		final ModSettings settings = new ModSettings(this);
+		settings.loadValues();
 		settings.loadKeyBinds();
 		Runtime.getRuntime().addShutdownHook(new Thread(MOD_NAME + " Shutdown Thread")
 		{
 			@Override
 			public void run() {
 				settings.saveKeyBinds();
+				settings.saveValues();
 			}
 		});
 	}

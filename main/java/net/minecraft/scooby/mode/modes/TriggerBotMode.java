@@ -27,7 +27,7 @@ import org.lwjgl.input.Keyboard;
  * @author b
  * @since 3:42 PM on 3/15/2015
  */
-public class TriggerBot extends Mode {
+public class TriggerBotMode extends Mode {
 
 	/**
 	 * Basic Timer class used for delays and such.
@@ -75,8 +75,8 @@ public class TriggerBot extends Mode {
 	/* Used to generate a random time to wait for between attacking */
 	private Random random = new Random();
 
-	public TriggerBot(Scooby scooby) {
-		super(scooby, "trigger_bot", Keyboard.KEY_R);
+	public TriggerBotMode(Scooby scooby) {
+		super(scooby, "TriggerBot", Keyboard.KEY_R);
 		this.timer = new Timer();
 	}
 

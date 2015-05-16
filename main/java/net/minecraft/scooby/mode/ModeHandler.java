@@ -5,11 +5,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import net.minecraft.scooby.Scooby;
 import net.minecraft.scooby.handlers.Handler;
-import net.minecraft.scooby.mode.modes.Aimbot;
-import net.minecraft.scooby.mode.modes.Criticals;
-import net.minecraft.scooby.mode.modes.Sprint;
-import net.minecraft.scooby.mode.modes.TriggerBot;
-import net.minecraft.scooby.mode.modes.Velocity;
+import net.minecraft.scooby.mode.modes.AimbotMode;
+import net.minecraft.scooby.mode.modes.CriticalsMode;
+import net.minecraft.scooby.mode.modes.SprintMode;
+import net.minecraft.scooby.mode.modes.TriggerBotMode;
+import net.minecraft.scooby.mode.modes.VelocityMode;
 
 /**
  * @author b
@@ -32,11 +32,11 @@ public class ModeHandler implements Handler {
 	 */
 	@Override
 	public void init(Scooby scooby) {
-		registerMode(new TriggerBot(scooby));
-		registerMode(new Sprint(scooby));
-		registerMode(new Aimbot(scooby));
-		registerMode(new Velocity(scooby));
-		registerMode(new Criticals(scooby));
+		registerMode(new TriggerBotMode(scooby));
+		registerMode(new SprintMode(scooby));
+		registerMode(new AimbotMode(scooby));
+		registerMode(new VelocityMode(scooby));
+		registerMode(new CriticalsMode(scooby));
 	}
 
 	/**

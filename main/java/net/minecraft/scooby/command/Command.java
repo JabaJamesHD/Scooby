@@ -18,12 +18,19 @@ public abstract class Command extends CommandBase {
 		scooby.mc.thePlayer.addChatMessage(new ChatComponentText("\247c[" + Scooby.NAME + "]:\247r " + message));
 	}
 
+	/**
+	 * Convenience method.
+	 * @return
+	 */
+	public String getCommandUsage() {
+		return getCommandUsage(scooby.mc.thePlayer);
+	}
+
 	@Override
 	public String getCommandUsage(ICommandSender sender) {
 		// TODO Auto-generated method stub
 		return usage;
 	}
-
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub

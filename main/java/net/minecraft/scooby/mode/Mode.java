@@ -17,11 +17,12 @@ public abstract class Mode {
 
 	/* Whether or not the mod is currently enabled */
 	private boolean enabled = false;
-	private String configName;
+	private String name, configName;
 
-	public Mode(Scooby scooby, String configName, int toggleKey) {
+	public Mode(Scooby scooby, String name, int toggleKey) {
 		this.scooby = scooby;
-		this.configName = configName;
+		this.name = name;
+		configName = name.toLowerCase().replace(" ", "_");
 		this.toggleKey = toggleKey;
 	}
 
@@ -29,6 +30,9 @@ public abstract class Mode {
 		return configName;
 	}
 
+	public String getName() {
+		return name;
+	}
 	/**
 	 * This is the key code used to toggle the mod.
 	 */

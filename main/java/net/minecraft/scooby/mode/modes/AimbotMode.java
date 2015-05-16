@@ -26,14 +26,14 @@ import org.lwjgl.input.Keyboard;
  * @author pootPoot
  * @since brudin started ignoring my pull request... :'C
  */
-public class Aimbot extends Mode {
+public class AimbotMode extends Mode {
 
 	private EntityPlayer targetPlayer; // Makes Aimbot focus on one player before switching because kek.
 	private Random rand = new Random();
 	private int slowRotationCount;
 	private float slowRotationIncrement;
-	public Aimbot(Scooby scooby) {
-		super(scooby, "aimbot", Keyboard.KEY_I);
+	public AimbotMode(Scooby scooby) {
+		super(scooby, "Aimbot", Keyboard.KEY_I);
 		// TODO Auto-generated constructor stub
 	}
 

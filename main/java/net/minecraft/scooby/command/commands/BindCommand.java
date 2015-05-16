@@ -7,6 +7,7 @@ import net.minecraft.scooby.command.Command;
 import net.minecraft.scooby.mode.Mode;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 
 public class BindCommand extends Command {
 
@@ -33,14 +34,14 @@ public class BindCommand extends Command {
 		}
 		else if (args.length == 2 && args[0].equalsIgnoreCase("del")) {
 			for (Mode mode : scooby.modeHandler.getModes()) {
-				String configName = mode.getConfigName();
-				if (configName.equalsIgnoreCase(args[1])) {
+				if (mode.getConfigName().equalsIgnoreCase(args[1])) {
+					String name = mode.getName();
 					if (mode.getToggleKey() == -1) {
-						addCommandMessage("cannot unbind mode " + configName + " because it does not have a key bind");
+						addCommandMessage("cannot unbind mode " + name + " because it does not have a key bind");
 						return;
 					}
 					mode.setToggleKey(-1);
-					addCommandMessage("mode " + configName + " has been unbound");
+					addCommandMessage("mode " + name + " has been unbound");
 					return;
 				}
 			}
@@ -49,22 +50,29 @@ public class BindCommand extends Command {
 		else if (args.length == 3 && args[0].equalsIgnoreCase("set")) {
 			String keyName = args[2].toUpperCase();
 			for (Mode mode : scooby.modeHandler.getModes()) {
-				String configName = mode.getConfigName();
-				if (configName.equalsIgnoreCase(args[1])) {
+				if (mode.getConfigName().equalsIgnoreCase(args[1])) {
+					String name = mode.getName();
 					int toggleKey = Keyboard.getKeyIndex(keyName);
-					if (toggleKey == Keyboard.KEY_NONE || toggleKey == mode.getToggleKey()) {
-						addCommandMessage(toggleKey == Keyboard.KEY_NONE ? "usage: " + getCommandUsage(scooby.mc.thePlayer) : "cannot bind mode " + configName + " to key " + keyName + " because it is already bound to that key");
+					if (toggleKey == Keyboard.KEY_NONE) {
+						toggleKey = Mouse.getButtonIndex(keyName);
+						if (toggleKey == -1) {
+							addCommandMessage("usage: " + getCommandUsage());
+							return;
+						}
+					}
+					if (toggleKey == mode.getToggleKey()) {
+						addCommandMessage("cannot bind mode " + name + " to key " + keyName + " because it is already bound to that key");
 						return;
 					}
 					mode.setToggleKey(toggleKey);
-					addCommandMessage("mode " + configName + " has been bound to key " + keyName);
+					addCommandMessage("mode " + name + " has been bound to key " + keyName);
 					return;
 				}
 			}
 			addCommandMessage("cannot bind mode " + args[1] + " to key " + keyName + " because it does not exist");
 		}
 		else {
-			addCommandMessage("usage: " + getCommandUsage(scooby.mc.thePlayer));
+			addCommandMessage("usage: " + getCommandUsage());
 		}
 	}
 
